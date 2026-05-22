@@ -234,5 +234,5 @@ while i <= 100:
     # 处理计数器
     i += 1
 print("0~100之间偶数求和结果 = %d" % result)
-
+print(result)
 
