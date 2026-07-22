@@ -235,4 +235,62 @@ while i <= 100:
     i += 1
 print("0~100之间偶数求和结果 = %d" % result)
 
+# 3.1.4. break 和 continue
+# 注意: break 和 continue 是专门在循环中使用的关键字
+# - 在循环过程中，如果 某一个条件满足后，不 再希望 循环继续执行，可以使用 break 退出循环
+# - 举例：一共吃5个苹果，吃完第一个，吃第二个…，这里"吃苹果"的动作是不是重复执行？
+# 情况一：如果吃的过程中，吃完第三个吃饱了，则不需要再吃第4个和第五个苹果，即是吃苹果的动作 停止，
+# 这里就是break控制循环流程，即终止此循环。
+i = 1
+while i <= 5:
+    print("吃了第%d个苹果" % i)
+# break 某一条件满足时，退出循环，不再执行后续重复的代码
+    if i == 3:
+        print("吃饱了不吃了")
+        break
+    i += 1
+    print("over")
+    
+# 在循环过程中，如果 某一个条件满足后，不 希望 执行循环代码，但是又不希望退出循环，可以使用continue
+# 情况二：如果吃的过程中，吃到第三个吃出一个大虫子...,是不是这个苹果就不吃了，开始吃第四个苹 果，这
+# 里就是continue控制循环流程，即退出当前一次循环继而执行下一次循环代码。
+i = 1
+while i <= 5:
+    if i == 3:
+        print(f'大虫子，第{i}个苹果不吃了')        
+# 在continue之前一定要修改计数器，否则会陷入死循环
+        i += 1
+        continue
+    print(f'吃了第{i}个苹果')
+    i += 1
 
+
+# for 临时变量 in 容器:
+# 重复执行的代码1
+# 重复执行的代码2
+
+list_var = ['a', 'b', 'c', 'd']
+for i in list_var:  # i是代表所遍历对象的每一项的一个变量，可以是任意变量名
+    print(i)
+for index, item in enumerate(list_var):  # index代表索引，item代表每一项的值
+    print(index, item)
+dict_var ={'a': 1, 'b': 2, 'c': 3}
+for key, value in dict_var.items():  # i是代表所遍历对象的每一项的一个变量，可以是任意变量名
+    print(key, value)
+
+
+str1 = 'itheima'
+for i in str1:
+    if i == 'e':
+        print('遇到e不打印')
+        break
+    print(i)
+    
+str1 = 'itheima'
+for i in str1:
+    if i == 'e':
+        print('遇到e不打印')
+        continue
+    print(i)
+    
+    
