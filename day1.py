@@ -34,6 +34,9 @@ def run_test(case_name):
 result = run_test("登录测试")
 print(result)
 
+
+
+#函数就是解决这个问题的：把重复逻辑装进一个盒子，起个名字，以后直接喊名字就行。
 # 如果想对三批不同的用例统计失败数，代码会变成这样：
 #第一批
 test_results_1 =["通过", "失败", "通过"]
@@ -67,4 +70,61 @@ for r in test_results_4:
         fail_count = fail_count + 1
 print("第四批用例失败数:", fail_count)
 
-#函数就是解决这个问题的：把重复逻辑装进一个盒子，起个名字，以后直接喊名字就行。
+
+
+#函数的定义与调用
+# 定义函数：def 函数名(参数):
+def count_fail(results):
+    fail = 0
+    for r in results:
+        if r == "失败":
+            fail = fail +1
+            return fail        #return 把结果"扔出来"
+
+#调用函数
+bugs_1 = ["通过", "失败", "通过","失败"]
+bugs_2 = ["失败", "失败", "失败"]
+bugs_3 = ["通过", "通过", "通过"]
+
+print("批次1失败数:",count_fail(bugs_1))
+print("批次2失败数:",count_fail(bugs_2))
+print("批次3失败数:",count_fail(bugs_3))
+
+#默认参数（不传就用默认值）
+def run_test(case_name,retry=2):
+    for i in range(1,retry+1):
+        print(f"第{i}次执行:{case_name}")
+    print("---")
+    
+run_test("登录测试")                # 没传 retry，默认重试 2 次
+run_test("支付测试",retry=5)        # 传了就用 5 次
+
+#多个参数
+def assert_eaqual(actual,expected):
+    if actual == expected:
+        print("PASS")
+    else:
+        print(f"FAIL,期望{expected},实际{actual}") 
+
+assert_eaqual(100,100)
+assert_eaqual("abc","ABC")
+assert_eaqual([1,2,3],[1,2,3])
+
+#函数的作用域（别踩坑）,记住一句话：函数里定义的变量只活在函数里，出去了就不认。
+x = 10   # 全局变量
+
+def change():
+    x = 5   # 这是函数内部的局部变量，和外边的 x 是两个东西
+    print("函数内:", x)
+
+change()
+print("函数外:", x)   # 还是 10，没变
+
+
+
+#2026-07-23
+# 字典和真正对接接口的 requests 库。字典是 JSON 在 Python 里的样子，接口测试天天打交道。
+# 先看一眼
+resp = {"code": 200, "msg": "success", "data": {"id": 1}}
+print(resp["code"])
+print(resp["data"]["id"])
