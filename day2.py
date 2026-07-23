@@ -30,3 +30,9 @@ for r in results:
 print ("\n---- 汇总报告 ----")
 summary(results)
     
+#2026-07-23
+# 字典和真正对接接口的 requests 库。字典是 JSON 在 Python 里的样子，接口测试天天打交道。
+# 先看一眼
+resp = {"code": 200, "msg": "success", "data": {"id": 1}}
+print(resp["code"])
+print(resp["data"]["id"])
